@@ -31,7 +31,7 @@ function newQuote() {
 
     // check if author feild is null then replace it with unknown.
     if (quote.author===null){
-        authorText.textContent = 'Unknown';
+        authorText.textContent = 'Baba Aman';
     }else{
         authorText.textContent = quote.author;
     }
