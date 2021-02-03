@@ -6,41 +6,26 @@ const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
 
-// trying different method to fetch api and also try to make their own proxy api for our own purpose
-
-
-// async function getQuote(){
-//     const proxyUrl = 'https://mighty-escarpment-32848.herokuapp.com/'
-
-//     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
-
-//     try{
-//         const response = await fetch(proxyUrl + apiUrl);
-//         const data = await response.json();
-//         authorText.innerText = data.quoteAuthor;
-//         authorText.innerText = data.quoteText;
-//     }catch(error){
-//         getQuote();
-//     }
-// }
-
-
 let apiQuotes = [];
 
 // showing loader due to some fetching time of our api
-// function loading() {
-//     // show loading
-//     quoteContainer.hidden = true;
-//     loader.hidden = false;
+function loading() {
+    // show loading
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+// hide loading
+function complete() {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+}
+    
+    
 
-//     // hide loading
-//     quoteContainer.hidden = false;
-//     loader.hidden = true;
-// }
 
 // show new quote from 1642 quotes
 function newQuote() {
-    // loading();
+    loading();
     // picking up a random quote from 1642 of api
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
 
@@ -59,14 +44,14 @@ function newQuote() {
     }
     // set quote, to hide the loader
     quoteText.textContent = quote.text;
-    // complete();
+    complete(); 
 }
 
 
 
 // get quotes from api
 async function getQuotes() {
-    // loading();
+    loading();
     const apiUrl = 'https://type.fit/api/quotes';
     try{
         const response = await fetch(apiUrl);
@@ -91,3 +76,8 @@ twitterBtn.addEventListener('click', tweetQuote)
 
 // on load api
 getQuotes();
+
+
+
+
+// key point "always remember correct name of a function must check spelling before using that function"
